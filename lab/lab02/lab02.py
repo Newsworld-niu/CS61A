@@ -13,8 +13,9 @@ def composite_identity(f, g):
     >>> b1(4)                            # (4 + 1) ** 2 != 4 ** 2 + 1
     False
     """
-    "*** YOUR CODE HERE ***"
-
+    def h(x):
+        return f(g(x)) == g(f(x))
+    return h
 
 def sum_digits(y):
     """Return the sum of the digits of non-negative integer y."""
@@ -59,8 +60,14 @@ def count_cond(condition):
     >>> count_primes(20)   # 2, 3, 5, 7, 11, 13, 17, 19
     8
     """
-    "*** YOUR CODE HERE ***"
-
+    def count_condition(n):
+        count , i = 0, 1
+        while i <= n:
+            if condition(n ,i):
+                count += 1
+            i += 1
+        return count
+    return count_condition
 
 def multiple(a, b):
     """Return the smallest number n that is a multiple of both a and b.
@@ -70,8 +77,7 @@ def multiple(a, b):
     >>> multiple(14, 21)
     42
     """
-    "*** YOUR CODE HERE ***"
-
+    
 
 
 def cycle(f1, f2, f3):
@@ -100,5 +106,13 @@ def cycle(f1, f2, f3):
     >>> do_two_cycles(1)
     19
     """
-    "*** YOUR CODE HERE ***"
+    def do_times(times):
+        def do_functions(num):
+            if times == 0:
+                return num
+            return cycle(f2,f3,f1)(times-1)(f1(num))
+        return do_functions
+    return do_times
+
+
 
